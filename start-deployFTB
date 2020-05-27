@@ -36,4 +36,4 @@ rm -f forge*installer.jar
 export SERVER=forge-$(jq -r '.targets[] | select(.name == "minecraft") | .version' version.json)-$(jq -r '.targets[] | select(.name == "forge") | .version' version.json).jar
 
 # Continue to Final Setup
-exec /start-finalSetup01World $@
+exec /start-finalSetup01World "$@"
