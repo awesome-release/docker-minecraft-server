@@ -491,20 +491,19 @@ A [Magma](https://magmafoundation.org/) server, which is a combination of Forge 
 
 > **NOTE** there are limited base versions supported, so you will also need to  set `VERSION`, such as "1.12.2"
 
-## Running a Server with a Feed-The-Beast (FTB) / CurseForge modpack
+## Running a Server with a CurseForge modpack
 
-Enable this server mode by adding a `-e TYPE=FTB` or `-e TYPE=CURSEFORGE` to your command-line,
+Enable this server mode by adding `-e TYPE=CURSEFORGE` to your command-line,
 but note the following additional steps needed...
 
-You need to specify a modpack to run, using the `FTB_SERVER_MOD` or `CF_SERVER_MOD` environment
-variable. An FTB/CurseForge server modpack is available together with its respective
-client modpack on <https://www.feed-the-beast.com> under "Additional Files." Similar you can
-locate the modpacks for CurseForge at <https://www.curseforge.com/minecraft/modpacks> .
+You need to specify a modpack to run, using the `CF_SERVER_MOD` environment
+variable. A CurseForge server modpack is available together with its respective
+client modpack at <https://www.curseforge.com/minecraft/modpacks> .
 
-Now you can add a `-e FTB_SERVER_MOD=name_of_modpack.zip` to your command-line.
+Now you can add a `-e CF_SERVER_MOD=name_of_modpack.zip` to your command-line.
 
-    docker run -d -v /path/on/host:/data -e TYPE=FTB \
-        -e FTB_SERVER_MOD=FTBPresentsSkyfactory3Server_3.0.6.zip \
+    docker run -d -v /path/on/host:/data -e TYPE=CURSEFORGE \
+        -e CF_SERVER_MOD=SkyFactory_4_Server_4.1.0.zip \
         -p 25565:25565 -e EULA=TRUE --name mc itzg/minecraft-server
 
 If you want to keep the pre-download modpacks separate from your data directory,
@@ -512,8 +511,8 @@ then you can attach another volume at a path of your choosing and reference that
 The following example uses `/modpacks` as the container path as the pre-download area:
 
     docker run -d -v /path/on/host:/data -v /path/to/modpacks:/modpacks \
-        -e TYPE=FTB \
-        -e FTB_SERVER_MOD=/modpacks/FTBPresentsSkyfactory3Server_3.0.6.zip \
+        -e TYPE=CURSEFORGE \
+        -e CF_SERVER_MOD=/modpacks/SkyFactory_4_Server_4.1.0.zip \
         -p 25565:25565 -e EULA=TRUE --name mc itzg/minecraft-server
 
 ### Fixing "unable to launch forgemodloader"
@@ -525,42 +524,6 @@ If your server's modpack fails to load with an error [like this](https://support
 then you apply a workaround by adding this to the run invocation:
 
     -e FTB_LEGACYJAVAFIXER=true
-
-### Using a client-made curseforge modpack
-
-If you use something like CurseForge, you may end up creating/using modpacks that do not
-contain server mod jars. Instead, the CurseForge setup has `manifest.json` files, which
-will show up under `/data/FeedTheBeast/manifest.json`.
-
-To use these packs you will need to:
-
-- Specify the manifest location with env var `MANIFEST=/data/FeedTheBeast/manifest`
-- Pick a relevant ServerStart.sh and potentially settings.cfg and put them in `/data/FeedTheBeast`
-
-An example of the latter would be to use <https://github.com/AllTheMods/Server-Scripts>
-There, you'll find that all you have to do is put `ServerStart.sh` and `settings.cfg` into
-`/data/FeedTheBeast`, taking care to update `settings.cfg` to specify your desired version
-of minecraft and forge. You can do this in the cli with something like:
-
-```
-$ wget https://raw.githubusercontent.com/AllTheMods/Server-Scripts/master/ServerStart.sh
-$ wget https://raw.githubusercontent.com/AllTheMods/Server-Scripts/master/settings.cfg
-$ vim settings.cfg #update the forge version to the one you want. Your manifest.json will have it
-$ chmod +x ServerStart.sh
-$ docker run -itd --name derpcraft \
-  -e MANIFEST=/data/FeedTheBeast/manifest.json \
-  -v $PWD/ServerStart.sh:/data/FeedTheBeast/ServerStart.sh \
-  -v $PWD/settings.cfg:/data/FeedTheBeast/settings.cfg \
-  -e VERSION=1.12.2\
-  -e TYPE=CURSEFORGE\
-  -e CF_SERVER_MOD=https://minecraft.curseforge.com/projects/your_amazing_modpack/files/2670435/download\
-  -p 25565:25565\
-  -e EULA=TRUE\
-  --restart=always\
-  itzg/minecraft-server
-```
-
-Note the `CF_SERVER_MOD` env var should match the server version of the modpack you are targeting.
 
 ## Running a SpongeVanilla server
 

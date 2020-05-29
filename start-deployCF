@@ -4,11 +4,11 @@
 
 export FTB_BASE_DIR=/data/FeedTheBeast
 legacyJavaFixerUrl=http://ftb.cursecdn.com/FTB2/maven/net/minecraftforge/lex/legacyjavafixer/1.0/legacyjavafixer-1.0.jar
-export TYPE=FEED-THE-BEAST
+export TYPE=CURSEFORGE
 
 FTB_SERVER_MOD=${FTB_SERVER_MOD:-$CF_SERVER_MOD}
 
-log "Looking for Feed-The-Beast / CurseForge server modpack."
+log "Looking for CurseForge server modpack."
 if [[ -z $FTB_SERVER_MOD ]]; then
     log "Environment variable FTB_SERVER_MOD not set."
     log "Set FTB_SERVER_MOD to the file name of the FTB server modpack."
