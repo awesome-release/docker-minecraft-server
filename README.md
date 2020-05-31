@@ -491,7 +491,19 @@ A [Magma](https://magmafoundation.org/) server, which is a combination of Forge 
 
 > **NOTE** there are limited base versions supported, so you will also need to  set `VERSION`, such as "1.12.2"
 
-## Running a Server with a CurseForge modpack
+## Running a server with a Feed the Beast modpack
+
+[Feed the Beast application](https://www.feed-the-beast.com/) modpacks are supported by using `-e TYPE=FTBA` (**note** the "A" at the end of the type). This server type will automatically take care of downloading and installing the modpack and appropriate version of Forge, so the `VERSION` does not need to be specified.
+
+### Environment Variables:
+- `FTB_MODPACK_ID`: **required**, the numerical ID of the modpack to install. The ID can be located by finding the modpack at [Neptune FTB](https://ftb.neptunepowered.org/) and using the "Pack ID"
+- `FTB_MODPACK_VERSION_ID`: optional, the numerical Id of the version to install. If not specified, the latest version will be installed. The "Version ID" can be obtained by drilling into the Versions tab and clicking a specific version.
+
+### Upgrading
+
+If a specific `FTB_MODPACK_VERSION_ID` was not specified, simply restart the container to pick up the newest modpack version. If using a specific version ID, recreate the container with the new version ID.
+
+## Running a server with a CurseForge modpack
 
 Enable this server mode by adding `-e TYPE=CURSEFORGE` to your command-line,
 but note the following additional steps needed...
