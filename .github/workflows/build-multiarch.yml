@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v2.2.0
       - name: Get branch name
         uses: nelonoel/branch-name@v1
-      - name: Customizable Docker Buildx Build
-        uses: zmingxie/docker_buildx@v1.1
+      - name:  Docker Buildx
+        uses: ilteoood/docker_buildx@1.0.4
         with:
           publish: true
           imageName: itzg/minecraft-server
