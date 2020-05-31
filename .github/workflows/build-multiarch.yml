@@ -1,4 +1,4 @@
-name: build-and-publish
+name: Build and publish multiarch
 on:
   push:
     branches:
@@ -16,7 +16,7 @@ jobs:
       - name: Customizable Docker Buildx Build
         uses: zmingxie/docker_buildx@v1.1
         with:
-          publish: false
+          publish: true
           imageName: itzg/minecraft-server
           tag: ${{ env.BRANCH_NAME }}-test-ci
           dockerHubUser: ${{ secrets.DOCKER_USER }}
