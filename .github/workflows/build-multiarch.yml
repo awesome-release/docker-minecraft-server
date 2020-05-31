@@ -18,7 +18,7 @@ jobs:
         with:
           publish: true
           imageName: itzg/minecraft-server
-          tag: ${{ env.BRANCH_NAME }}-test-ci
+          tag: ${{ env.BRANCH_NAME }}
           dockerHubUser: ${{ secrets.DOCKER_USER }}
           dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
 
