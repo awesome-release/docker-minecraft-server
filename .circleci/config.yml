@@ -1,22 +1,16 @@
 version: 2.1
 
-jobs:
-  minecraft_server:
-    docker:
-      - image: docker:18.09.6
-    environment:
-      DOCKER_BUILDKIT: "1"
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 18.09.3
-      - run: docker build --platform linux/amd64,linux/arm64,linux/arm/v7 -t itzg/minecraft-server:multiarch .
+orbs:
+  docker-buildx: foodles/docker-buildx@0.0.1
 
 workflows:
   version: 2
   build:
     jobs:
-      - minecraft_server:
+      - publish:
+          image: itzg/minecraft-server
+          tag: "<< pipeline.git.branch >>-test-ci"
+          deploy: false
           filters:
             branches:
               ignore:
