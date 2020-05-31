@@ -11,12 +11,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.2.0
+      - name: Get branch name
+        uses: nelonoel/branch-name@v1
       - name: Customizable Docker Buildx Build
         uses: zmingxie/docker_buildx@v1.1
         with:
           publish: false
           imageName: itzg/minecraft-server
-          tag: ${{ github.ref }}-test-ci
+          tag: ${{ env.BRANCH_NAME }}-test-ci
           dockerHubUser: ${{ secrets.DOCKER_USER }}
           dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
 
