@@ -10,9 +10,13 @@ workflows:
       - docker-buildx/publish:
           image: itzg/minecraft-server
           tag: "<< pipeline.git.branch >>-test-ci"
+          extra_build_args: >
+            --platform=linux/arm64
+            --platform=linux/arm/v7
+            --platform=linux/amd64
           deploy: false
           filters:
             branches:
-              ignore:
-                - armv7
+              only:
                 - multiarch
+                - ftb-support
