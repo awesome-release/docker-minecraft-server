@@ -16,7 +16,7 @@ jobs:
         with:
           publish: false
           imageName: itzg/minecraft-server
-          tag: ${{ github.head_ref }}-test-ci
+          tag: ${{ github.ref }}-test-ci
           dockerHubUser: ${{ secrets.DOCKER_USER }}
           dockerHubPassword: ${{ secrets.DOCKER_PASSWORD }}
 
