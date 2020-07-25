@@ -9,7 +9,7 @@ services:
   mc:
     restart: "no"
     build:
-      context: ..
+      context: .
       cache_from:
       - itzg/minecraft-server:latest
     environment:
