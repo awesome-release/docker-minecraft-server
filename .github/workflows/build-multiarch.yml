@@ -40,4 +40,6 @@ jobs:
           push: false
           tags: |
             itzg/minecraft-server:${{ env.BRANCH_NAME }}
+          cache-from: type=registry,ref=itzg/minecraft-server:${{ env.BRANCH_NAME }}
+          cache-to: type=inline
 
