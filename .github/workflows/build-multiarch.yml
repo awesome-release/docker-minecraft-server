@@ -25,7 +25,7 @@ jobs:
             VERSION=${GITHUB_REF#refs/tags/v}
           fi
           if [[ $GITHUB_REF == refs/heads/* ]]; then
-            VERSION=${GITHUB_REF#refs/heads/v}
+            VERSION=${GITHUB_REF#refs/heads/}
             if [[ $VERSION == master ]]; then
               VERSION=latest
             fi
