@@ -4,6 +4,7 @@ on:
     branches:
       - multiarch
       - multiarch-latest
+      - test-new-dockerx-build
     tags:
       - "[0-9]+.[0-9]+.[0-9]+-multiarch"
       - "[0-9]+.[0-9]+.[0-9]+-multiarch-latest"
