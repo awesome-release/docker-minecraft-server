@@ -1,3 +1,35 @@
+## Verified to work in Release
+No modifications were necessary for this project to run in Release. However, in the Release Application Template it is necessary to adjust a few things. 
+
+First, create an ELB to expose port 25565 with a simple hostname under the minecraft service. The minecraft service section of your Application Template should look like this:
+
+```
+services:
+- name: minecraft
+  image: itzg/minecraft-server
+  ports:
+  - port: '25565'
+    type: node_port
+    target_port: '25565'
+    loadbalancer: true
+  hostname: minecraft-${env_id}-lb-${domain}
+```
+This will expose port 25565 directly via an ELB to the Internet.
+
+You should also increase the memory available for this container in Release by editing the resources section of your Applicaiton Template. In this example I've used 3Gb.
+
+```
+resources:
+  cpu:
+    limits: 1000m
+    requests: 100m
+  memory:
+    limits: 3Gi
+    requests: 100Mi
+  replicas: 1
+```
+
+
 [![Docker Pulls](https://img.shields.io/docker/pulls/itzg/minecraft-server.svg)](https://hub.docker.com/r/itzg/minecraft-server/)
 [![Docker Stars](https://img.shields.io/docker/stars/itzg/minecraft-server.svg?maxAge=2592000)](https://hub.docker.com/r/itzg/minecraft-server/)
 [![GitHub Issues](https://img.shields.io/github/issues-raw/itzg/docker-minecraft-server.svg)](https://github.com/itzg/docker-minecraft-server/issues)
