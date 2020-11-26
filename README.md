@@ -1,4 +1,6 @@
 ## Verified to work in Release
+This project is based on [https://github.com/itzg/docker-minecraft-server](https://github.com/itzg/docker-minecraft-server)
+
 No modifications were necessary for this project to run in Release. However, in the Release Application Template it is necessary to adjust a few things. 
 
 First, create an ELB to expose port 25565 with a simple hostname under the minecraft service. The minecraft service section of your Application Template should look like this:
