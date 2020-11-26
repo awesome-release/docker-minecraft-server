@@ -30,6 +30,7 @@ resources:
     requests: 100Mi
   replicas: 1
 ```
+For more information on editing a Release Application Template, please refer to the documentation: [Release Application Template Documentation](https://docs.releaseapp.io/reference-guide/application-settings/application-template). 
 
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/itzg/minecraft-server.svg)](https://hub.docker.com/r/itzg/minecraft-server/)
