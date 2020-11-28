@@ -14,9 +14,7 @@ services:
       VIEW_DISTANCE: 15
       LEVEL_TYPE: LARGEBIOMES
       MAX_PLAYERS: 100
-      CONSOLE: "false"
-      ENABLE_RCON: "true"
-      RWA_RCON_PASSWORD: "true"
+      ENABLE_RCON: true
     image: itzg/minecraft-server
     restart: always
   rcon:
