@@ -8,7 +8,7 @@ services:
       - "mcbig:/data"
     environment:
       EULA: "TRUE"
-      MAX_MEMORY: 32G
+      MAX_MEMORY: 4G
       MAX_BUILD_HEIGHT: 256
       VIEW_DISTANCE: 15
       LEVEL_TYPE: LARGEBIOMES
@@ -20,6 +20,11 @@ services:
     image: itzg/rcon
     ports:
       - "4326:4326"
+    volumes:
+      - "rcon:/opt/rcon-web-admin/db"
+  rcon-ws:
+    image: itzg/rcon
+    ports:
       - "4327:4327"
     volumes:
       - "rcon:/opt/rcon-web-admin/db"
@@ -27,3 +32,4 @@ services:
 volumes:
   mcbig:
   rcon:
+  rcon-ws:

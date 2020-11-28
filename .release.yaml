@@ -1,1 +1,1 @@
-compose: docker-compose.yml
+compose: examples/docker-compose-big.yml
