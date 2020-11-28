@@ -4,6 +4,7 @@ services:
   minecraft:
     ports:
       - "25565:25565"
+      - "25575:25575"
     volumes:
       - "mcbig:/data"
     environment:
@@ -14,6 +15,8 @@ services:
       LEVEL_TYPE: LARGEBIOMES
       MAX_PLAYERS: 100
       CONSOLE: "false"
+      ENABLE_RCON: "true"
+      RWA_RCON_PASSWORD: "true"
     image: itzg/minecraft-server
     restart: always
   rcon:
@@ -22,12 +25,16 @@ services:
       - "4326:4326"
     volumes:
       - "rcon:/opt/rcon-web-admin/db"
+    environment:
+      RWA_RCON_HOST: "minecraft"
   rcon-ws:
     image: itzg/rcon
     ports:
       - "4327:4327"
     volumes:
       - "rcon:/opt/rcon-web-admin/db"
+    environment:
+      RWA_RCON_HOST: "minecraft"
 
 volumes:
   mcbig:
