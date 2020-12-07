@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  minecraft:
+    ports:
+      - "25565:25565"
+      - "25575:25575"
+    volumes:
+      - "mc:/data"
+    environment:
+      EULA: "TRUE"
+      MAX_MEMORY: 1G
+      MAX_BUILD_HEIGHT: 256
+      VIEW_DISTANCE: 15
+      ENABLE_RCON: true
+    image: itzg/minecraft-server
+    restart: always
+  rcon:
+    image: itzg/rcon
+    ports:
+      - "4326:4326"
+    volumes:
+      - "rcon:/opt/rcon-web-admin/db"
+    environment:
+      RWA_RCON_HOST: "minecraft"
+  rcon-ws:
+    image: itzg/rcon
+    ports:
+      - "4327:4327"
+    volumes:
+      - "rcon:/opt/rcon-web-admin/db"
+    environment:
+      RWA_RCON_HOST: "minecraft"
+
+volumes:
+  mc:
+  rcon:
+  rcon-ws:
