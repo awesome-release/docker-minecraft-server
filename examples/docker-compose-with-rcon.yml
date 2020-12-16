@@ -24,8 +24,6 @@ services:
       - "rcon:/opt/rcon-web-admin/db"
     environment:
       RWA_RCON_HOST: "minecraft"
-      RWA_RCON_PASSWORD: "change_me_to_the_minecraft_rcon_password"
-      RWA_PASSWORD: "change_me_web_password"
   rcon-ws:
     image: itzg/rcon
     ports:
@@ -34,8 +32,6 @@ services:
       - "rcon:/opt/rcon-web-admin/db"
     environment:
       RWA_RCON_HOST: "minecraft"
-      RWA_RCON_PASSWORD: "change_me_to_the_minecraft_rcon_password"
-      RWA_PASSWORD: "change_me_web_password"
 
 volumes:
   mc:
