@@ -3,8 +3,8 @@ version: '3'
 services:
   minecraft:
     ports:
-      - "25565:25565"
       - "25575:25575"
+      - "25565:25565"
     volumes:
       - "mc:/data"
     environment:
@@ -13,6 +13,7 @@ services:
       MAX_BUILD_HEIGHT: 256
       VIEW_DISTANCE: 15
       ENABLE_RCON: true
+      RCON_PASSWORD: "change_me"
     image: itzg/minecraft-server
     restart: always
   rcon:
@@ -23,6 +24,8 @@ services:
       - "rcon:/opt/rcon-web-admin/db"
     environment:
       RWA_RCON_HOST: "minecraft"
+      RWA_RCON_PASSWORD: "change_me_to_the_minecraft_rcon_password"
+      RWA_PASSWORD: "change_me_web_password"
   rcon-ws:
     image: itzg/rcon
     ports:
@@ -31,6 +34,8 @@ services:
       - "rcon:/opt/rcon-web-admin/db"
     environment:
       RWA_RCON_HOST: "minecraft"
+      RWA_RCON_PASSWORD: "change_me_to_the_minecraft_rcon_password"
+      RWA_PASSWORD: "change_me_web_password"
 
 volumes:
   mc:
