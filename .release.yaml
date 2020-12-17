@@ -1,1 +1,1 @@
-compose: examples/docker-compose-with-rcon.yml
+compose: examples/docker-compose-rcon-big.yml
